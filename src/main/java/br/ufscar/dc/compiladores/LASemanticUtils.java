@@ -102,18 +102,18 @@ public class LASemanticUtils {
             }
         } else {
             // With dimension
-            var identifierSemDimensao = "";
+            var identifierNoDim = "";
             // Ignores dimension and sees if variable already declared
             for (var identCtx : ctx.IDENT())
-                identifierSemDimensao += identCtx.getText();
+                identifierNoDim += identCtx.getText();
             for (var xp : ctx.dimensao().exp_aritmetica())
                 verifyType(table, xp);
 
-            if (!table.exists(identifierSemDimensao)) {
+            if (!table.exists(identifierNoDim)) {
                 addSemanticError(ctx.IDENT(0).getSymbol(),
-                        "identificador " + identifierSemDimensao + " nao declarado\n");
+                        "identificador " + identifierNoDim + " nao declarado\n");
             } else {
-                SymbolTableEntry ident = table.verify(identifierSemDimensao);
+                SymbolTableEntry ident = table.verify(identifierNoDim);
                 if (ident.variableType == SymbolTable.TypeLAVariable.INTEIRO)
                     return SymbolTable.TypeLAVariable.INTEIRO;
                 if (ident.variableType == SymbolTable.TypeLAVariable.LITERAL)

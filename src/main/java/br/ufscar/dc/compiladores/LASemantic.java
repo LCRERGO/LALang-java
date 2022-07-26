@@ -604,11 +604,11 @@ public class LASemantic extends LABaseVisitor<Void> {
                         "identificador " + nomeFunProc + " nao declarado\n");
             } else {
                 var funProc = currentScope.verify(nomeFunProc);
-                ArrayList<SymbolTable.TypeLAVariable> tiposParametros = new ArrayList<>();
+                ArrayList<SymbolTable.TypeLAVariable> parameterTypes = new ArrayList<>();
                 for (var exp : ctx.cmdChamada().expressao()) {
-                    tiposParametros.add(LASemanticUtils.verifyType(currentScope, exp));
+                    parameterTypes.add(LASemanticUtils.verifyType(currentScope, exp));
                 }
-                if (!funProc.argsRegFunc.validType(tiposParametros)) {
+                if (!funProc.argsRegFunc.validType(parameterTypes)) {
                     LASemanticUtils.addSemanticError(ctx.cmdChamada().IDENT().getSymbol(),
                             "incompatibilidade de parametros na chamada de " + nomeFunProc + "\n");
                 }

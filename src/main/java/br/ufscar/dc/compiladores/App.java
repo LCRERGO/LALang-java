@@ -37,10 +37,7 @@ public class App {
                     myWriter.write(s);
                 }
                 myWriter.write("Fim da compilacao\n");
-            } else {
-                // Generating code in C
             }
-
         } catch (ParseCancellationException e) {
             myWriter.write(e.getMessage());
             myWriter.write("Fim da compilacao\n");
