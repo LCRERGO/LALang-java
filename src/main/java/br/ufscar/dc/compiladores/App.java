@@ -37,7 +37,14 @@ public class App {
                     myWriter.write(s);
                 }
                 myWriter.write("Fim da compilacao\n");
+            } else {
+                // Generating code in C
+                var generator = new LAGenerator();
+                generator.visitPrograma(arvore);
+                var output = generator.getOutput();
+                myWriter.write(output.toString());
             }
+
         } catch (ParseCancellationException e) {
             myWriter.write(e.getMessage());
             myWriter.write("Fim da compilacao\n");
